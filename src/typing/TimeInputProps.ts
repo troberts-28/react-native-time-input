@@ -7,6 +7,7 @@ export default interface TimeInputProps {
   initialTime?: Date | null; // TODO: add stronger typing here for a date string?
   onTimeChange?: Function;
   setCurrentTime?: boolean;
+  hideToggle?: boolean;
   styles?: TimeInputStyle;
   theme?: TimeInputTheme;
 }

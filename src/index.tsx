@@ -18,6 +18,7 @@ export default function TimeInput({
   initialTime = null,
   onTimeChange = () => {},
   setCurrentTime = false,
+  hideToggle = false,
   styles = defaultStyles,
   theme = defaultTheme,
 }: TimeInputProps): JSX.Element | null {
@@ -113,77 +114,80 @@ export default function TimeInput({
             {
               backgroundColor: componentTheme.inputBackgroundColor,
               borderColor: componentTheme.inputBorderColor,
+              borderWidth: componentTheme.inputBorderWidth,
               color: componentTheme.inputTextColor,
             },
           ]}
           onTimeValueReady={handleTimeValueReady}
         />
 
-        <Toggle
-          toggleStyles={[
-            componentStyle.toggle,
-            {
-              backgroundColor: componentTheme.toggleBackgroundColor,
-            },
-          ]}
-        >
-          <ToggleButton
-            toggleButtonStyles={[
-              componentStyle.toggleButton,
+        {!hideToggle && (
+          <Toggle
+            toggleStyles={[
+              componentStyle.toggle,
               {
-                backgroundColor: componentTheme.toggleButtonBackground,
+                backgroundColor: componentTheme.toggleBackgroundColor,
               },
             ]}
-            onPress={() => setMeridiem('AM')}
           >
-            <Text
-              style={{
-                color: componentTheme.toggleButtonTextColor,
-              }}
+            <ToggleButton
+              toggleButtonStyles={[
+                componentStyle.toggleButton,
+                {
+                  backgroundColor: componentTheme.toggleButtonBackground,
+                },
+              ]}
+              onPress={() => setMeridiem('AM')}
             >
-              AM
-            </Text>
-          </ToggleButton>
+              <Text
+                style={{
+                  color: componentTheme.toggleButtonTextColor,
+                }}
+              >
+                AM
+              </Text>
+            </ToggleButton>
 
-          <ToggleButton
-            toggleButtonStyles={[
-              componentStyle.toggleButton,
-              {
-                backgroundColor: componentTheme.toggleButtonBackground,
-              },
-            ]}
-            onPress={() => setMeridiem('PM')}
-          >
-            <Text
-              style={{
-                color: componentTheme.toggleButtonTextColor,
-              }}
+            <ToggleButton
+              toggleButtonStyles={[
+                componentStyle.toggleButton,
+                {
+                  backgroundColor: componentTheme.toggleButtonBackground,
+                },
+              ]}
+              onPress={() => setMeridiem('PM')}
             >
-              PM
-            </Text>
-          </ToggleButton>
+              <Text
+                style={{
+                  color: componentTheme.toggleButtonTextColor,
+                }}
+              >
+                PM
+              </Text>
+            </ToggleButton>
 
-          <ToggleButton
-            activeButton
-            toggleButtonStyles={[
-              componentStyle.toggleButton,
-              componentStyle.toggleButtonActive,
-              {
-                backgroundColor:
-                  componentTheme.toggleButtonActiveBackgroundColor,
-                transform: [{ translateX: animation }],
-              },
-            ]}
-          >
-            <Text
-              style={{
-                color: componentTheme.toggleButtonActiveTextColor,
-              }}
+            <ToggleButton
+              activeButton
+              toggleButtonStyles={[
+                componentStyle.toggleButton,
+                componentStyle.toggleButtonActive,
+                {
+                  backgroundColor:
+                    componentTheme.toggleButtonActiveBackgroundColor,
+                  transform: [{ translateX: animation }],
+                },
+              ]}
             >
-              {meridiem}
-            </Text>
-          </ToggleButton>
-        </Toggle>
+              <Text
+                style={{
+                  color: componentTheme.toggleButtonActiveTextColor,
+                }}
+              >
+                {meridiem}
+              </Text>
+            </ToggleButton>
+          </Toggle>
+        )}
       </View>
 
       {showErrorText && (
@@ -192,6 +196,7 @@ export default function TimeInput({
             componentStyle.errorText,
             {
               color: componentTheme.errorTextColor,
+              marginLeft: componentTheme.errorTextMarginLeft,
             },
           ]}
         >

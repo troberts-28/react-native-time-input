@@ -15,7 +15,15 @@ export const mask = (value: string): string => {
   return value;
 };
 
-export const validate = (value: string): boolean => {
-  let regex = new RegExp('^(0?[1-9]|1[012]):[0-5][0-9]$');
+export const validate = (
+  value: string,
+  maxHours: string,
+  maxSeconds: string
+): boolean => {
+  let regex = new RegExp(
+    `^(0?[1-${maxHours.slice(-1)}]|${maxHours.slice(0, -1)}[0-${maxHours.slice(
+      -1
+    )}]):[0-${maxSeconds.slice(0, -1)}][0-${maxSeconds.slice(-1)}]$`
+  );
   return value.length ? regex.test(value) : true;
 };

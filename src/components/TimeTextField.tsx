@@ -8,12 +8,14 @@ type TimeTextFieldProps = {
   style: TextStyle[];
   onTimeValueReady: Function;
   givenTime: TimeParts | null;
+  placeholderTime?: string;
 };
 
 export default function TimeTextField({
   givenTime,
   onTimeValueReady,
   style,
+  placeholderTime,
 }: TimeTextFieldProps): JSX.Element {
   const [time, setTime] = useState<string>('');
   const {
@@ -28,7 +30,10 @@ export default function TimeTextField({
   }, [givenTime, setTime]);
 
   useEffect((): void => {
-    onTimeValueReady(TimeInputHelper.validate(debouncedTime), debouncedTime);
+    onTimeValueReady(
+      TimeInputHelper.validate(debouncedTime, '99', '99'),
+      debouncedTime
+    );
   }, [debouncedTime, onTimeValueReady]);
 
   useEffect((): (() => void) => {
@@ -44,7 +49,7 @@ export default function TimeTextField({
       keyboardType="number-pad"
       maxLength={5}
       onChangeText={(text: string) => setTime(TimeInputHelper.mask(text))}
-      placeholder="08:00"
+      placeholder={placeholderTime ?? '08:00'}
       value={time}
       style={style}
     />
