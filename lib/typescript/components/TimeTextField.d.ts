@@ -6,6 +6,8 @@ declare type TimeTextFieldProps = {
     onTimeValueReady: Function;
     givenTime: TimeParts | null;
     placeholderTime?: string;
+    maxHours?: string;
+    maxMinutes?: string;
 };
-export default function TimeTextField({ givenTime, onTimeValueReady, style, placeholderTime, }: TimeTextFieldProps): JSX.Element;
+export default function TimeTextField({ givenTime, onTimeValueReady, style, placeholderTime, maxHours, maxMinutes, }: TimeTextFieldProps): JSX.Element;
 export {};
