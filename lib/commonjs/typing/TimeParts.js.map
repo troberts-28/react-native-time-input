@@ -1,0 +1,1 @@
+{"version":3,"sources":["TimeParts.ts"],"names":["ETimeParts"],"mappings":";;IAAKA,U;;WAAAA,U;AAAAA,EAAAA,U;AAAAA,EAAAA,U;GAAAA,U,KAAAA,U","sourcesContent":["enum ETimeParts {\n  time = 'time',\n  meridiem = 'meridiem',\n}\n\nexport type TimeParts = {\n  [key in ETimeParts]: string;\n};\n"]}
