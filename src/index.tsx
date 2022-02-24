@@ -122,6 +122,8 @@ export default function TimeInput({
               borderColor: componentTheme.inputBorderColor,
               borderWidth: componentTheme.inputBorderWidth,
               color: componentTheme.inputTextColor,
+              fontFamily: componentTheme.inputFontFamily,
+              fontSize: componentTheme.inputFontSize,
             },
           ]}
           onTimeValueReady={handleTimeValueReady}
@@ -202,7 +204,8 @@ export default function TimeInput({
             componentStyle.errorText,
             {
               color: componentTheme.errorTextColor,
-              marginLeft: componentTheme.errorTextMarginLeft,
+              paddingLeft: componentTheme.errorTextPaddingLeft,
+              fontFamily: componentTheme.inputFontFamily,
             },
           ]}
         >

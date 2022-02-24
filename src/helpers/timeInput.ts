@@ -23,11 +23,11 @@ export const validate = (
   // let reg = new RegExp('^(0?[1-9]|1[012]):[0-5][0-9]$');
 
   let regex = new RegExp(
-    `^(0?[1-${maxHours?.slice(-1) ?? '9'}]|${maxHours?.slice(0, -1) ?? '1'}[0-${
-      maxHours?.slice(-1) ?? '2'
-    }]):[0-${maxMinutes?.slice(0, -1) ?? '5'}][0-${
-      maxMinutes?.slice(-1) ?? '9'
-    }]$`
+    `^(0?[1-${maxHours?.slice(-1) ?? '9'}]|${
+      '[0-' + maxHours?.slice(0, -1) + ']' ?? '1'
+    }[0-${maxHours?.slice(-1) ?? '2'}]):[0-${
+      maxMinutes?.slice(0, -1) ?? '5'
+    }][0-${maxMinutes?.slice(-1) ?? '9'}]$`
   );
   return value.length ? regex.test(value) : true;
 };
