@@ -9,6 +9,8 @@ type TimeTextFieldProps = {
   onTimeValueReady: Function;
   givenTime: TimeParts | null;
   placeholderTime?: string;
+  maxHours?: string;
+  maxMinutes?: string;
 };
 
 export default function TimeTextField({
@@ -16,6 +18,8 @@ export default function TimeTextField({
   onTimeValueReady,
   style,
   placeholderTime,
+  maxHours,
+  maxMinutes,
 }: TimeTextFieldProps): JSX.Element {
   const [time, setTime] = useState<string>('');
   const {
@@ -31,10 +35,10 @@ export default function TimeTextField({
 
   useEffect((): void => {
     onTimeValueReady(
-      TimeInputHelper.validate(debouncedTime, '99', '99'),
+      TimeInputHelper.validate(debouncedTime, maxHours, maxMinutes),
       debouncedTime
     );
-  }, [debouncedTime, onTimeValueReady]);
+  }, [debouncedTime, maxHours, maxMinutes, onTimeValueReady]);
 
   useEffect((): (() => void) => {
     setDebouncedTime(time);

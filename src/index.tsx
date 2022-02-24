@@ -19,6 +19,9 @@ export default function TimeInput({
   onTimeChange = () => {},
   setCurrentTime = false,
   hideToggle = false,
+  maxHours,
+  maxMinutes,
+  placeholderTime,
   styles = defaultStyles,
   theme = defaultTheme,
 }: TimeInputProps): JSX.Element | null {
@@ -109,6 +112,9 @@ export default function TimeInput({
       <View style={componentStyle.container}>
         <TimeTextField
           givenTime={getGivenTime()}
+          maxHours={maxHours}
+          maxMinutes={maxMinutes}
+          placeholderTime={placeholderTime}
           style={[
             componentStyle.input,
             {

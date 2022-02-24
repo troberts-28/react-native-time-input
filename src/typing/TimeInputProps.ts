@@ -8,6 +8,9 @@ export default interface TimeInputProps {
   onTimeChange?: Function;
   setCurrentTime?: boolean;
   hideToggle?: boolean;
+  maxHours?: string;
+  maxMinutes?: string;
+  placeholderTime?: string;
   styles?: TimeInputStyle;
   theme?: TimeInputTheme;
 }
