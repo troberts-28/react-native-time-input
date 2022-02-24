@@ -119,7 +119,9 @@ export default function TimeInput({
             componentStyle.input ?? {},
             {
               backgroundColor: componentTheme.inputBackgroundColor,
-              borderColor: componentTheme.inputBorderColor,
+              borderColor: validTime
+                ? componentTheme.inputBorderColor
+                : componentTheme.inputInvalidBorderColor,
               borderWidth: componentTheme.inputBorderWidth,
               color: componentTheme.inputTextColor,
               fontFamily: componentTheme.inputFontFamily,
@@ -198,7 +200,7 @@ export default function TimeInput({
         )}
       </View>
 
-      {showErrorText && (
+      {showErrorText && !validTime ? (
         <View style={componentStyle.errorTextContainer}>
           <Text
             style={[
@@ -213,6 +215,8 @@ export default function TimeInput({
             {validTime ? '' : componentErrorText}
           </Text>
         </View>
+      ) : (
+        <></>
       )}
     </View>
   );
