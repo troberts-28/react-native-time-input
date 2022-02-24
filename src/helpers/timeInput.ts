@@ -20,8 +20,6 @@ export const validate = (
   maxHours?: string,
   maxMinutes?: string
 ): boolean => {
-  // let reg = new RegExp('^(0?[1-9]|1[012]):[0-5][0-9]$');
-
   let regex = new RegExp(
     `^(0?[1-${maxHours?.slice(-1) ?? '9'}]|${
       '[0-' + maxHours?.slice(0, -1) + ']' ?? '1'

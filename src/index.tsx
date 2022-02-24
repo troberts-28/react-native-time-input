@@ -116,7 +116,7 @@ export default function TimeInput({
           maxMinutes={maxMinutes}
           placeholderTime={placeholderTime}
           style={[
-            componentStyle.input,
+            componentStyle.input ?? {},
             {
               backgroundColor: componentTheme.inputBackgroundColor,
               borderColor: componentTheme.inputBorderColor,
@@ -132,7 +132,7 @@ export default function TimeInput({
         {!hideToggle && (
           <Toggle
             toggleStyles={[
-              componentStyle.toggle,
+              componentStyle.toggle ?? {},
               {
                 backgroundColor: componentTheme.toggleBackgroundColor,
               },
@@ -140,7 +140,7 @@ export default function TimeInput({
           >
             <ToggleButton
               toggleButtonStyles={[
-                componentStyle.toggleButton,
+                componentStyle.toggleButton ?? {},
                 {
                   backgroundColor: componentTheme.toggleButtonBackground,
                 },
@@ -158,7 +158,7 @@ export default function TimeInput({
 
             <ToggleButton
               toggleButtonStyles={[
-                componentStyle.toggleButton,
+                componentStyle.toggleButton ?? {},
                 {
                   backgroundColor: componentTheme.toggleButtonBackground,
                 },
@@ -177,8 +177,8 @@ export default function TimeInput({
             <ToggleButton
               activeButton
               toggleButtonStyles={[
-                componentStyle.toggleButton,
-                componentStyle.toggleButtonActive,
+                componentStyle.toggleButton ?? {},
+                componentStyle.toggleButtonActive ?? {},
                 {
                   backgroundColor:
                     componentTheme.toggleButtonActiveBackgroundColor,
@@ -199,18 +199,20 @@ export default function TimeInput({
       </View>
 
       {showErrorText && (
-        <Text
-          style={[
-            componentStyle.errorText,
-            {
-              color: componentTheme.errorTextColor,
-              paddingLeft: componentTheme.errorTextPaddingLeft,
-              fontFamily: componentTheme.inputFontFamily,
-            },
-          ]}
-        >
-          {validTime ? '' : componentErrorText}
-        </Text>
+        <View style={componentStyle.errorTextContainer}>
+          <Text
+            style={[
+              componentStyle.errorText,
+              {
+                color: componentTheme.errorTextColor,
+                paddingLeft: componentTheme.errorTextPaddingLeft,
+                fontFamily: componentTheme.inputFontFamily,
+              },
+            ]}
+          >
+            {validTime ? '' : componentErrorText}
+          </Text>
+        </View>
       )}
     </View>
   );
