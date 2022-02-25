@@ -6,6 +6,7 @@ export default interface TimeInputProps {
   showErrorText?: boolean;
   initialTime?: Date | null; // TODO: add stronger typing here for a date string?
   onTimeChange?: Function;
+  onFinishEditing?: Function;
   setCurrentTime?: boolean;
   hideToggle?: boolean;
   maxHours?: string;

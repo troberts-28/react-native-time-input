@@ -12,7 +12,7 @@ declare type TimeTextFieldProps = {
     invalidIndicator?: boolean;
     maxHours?: string;
     maxMinutes?: string;
-    onFinishEditing?: (time: string) => void;
+    onFinishEditing?: Function;
 };
 export default function TimeTextField({ givenTime, onTimeValueReady, style, placeholderTime, placeholderColor, focusBorderColor, floatingErrorMessage, maxHours, maxMinutes, onFinishEditing, }: TimeTextFieldProps): JSX.Element;
 export {};

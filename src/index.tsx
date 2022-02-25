@@ -17,6 +17,7 @@ export default function TimeInput({
   showErrorText = true,
   initialTime = null,
   onTimeChange = () => {},
+  onFinishEditing,
   setCurrentTime = false,
   hideToggle = false,
   maxHours,
@@ -113,6 +114,7 @@ export default function TimeInput({
       <View style={componentStyle.container}>
         <TimeTextField
           givenTime={getGivenTime()}
+          onFinishEditing={onFinishEditing}
           maxHours={maxHours}
           maxMinutes={maxMinutes}
           placeholderTime={placeholderTime}

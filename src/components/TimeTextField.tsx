@@ -16,7 +16,7 @@ type TimeTextFieldProps = {
   invalidIndicator?: boolean;
   maxHours?: string;
   maxMinutes?: string;
-  onFinishEditing?: (time: string) => void;
+  onFinishEditing?: Function;
 };
 
 export default function TimeTextField({

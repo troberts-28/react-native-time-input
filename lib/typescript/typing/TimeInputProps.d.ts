@@ -5,6 +5,7 @@ export default interface TimeInputProps {
     showErrorText?: boolean;
     initialTime?: Date | null;
     onTimeChange?: Function;
+    onFinishEditing?: Function;
     setCurrentTime?: boolean;
     hideToggle?: boolean;
     maxHours?: string;
