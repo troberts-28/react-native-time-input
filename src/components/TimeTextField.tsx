@@ -13,7 +13,7 @@ type TimeTextFieldProps = {
   placeholderColor?: string;
   focusBorderColor?: string;
   floatingErrorMessage?: string;
-  invalidIndicator?: boolean;
+  isDisabled?: boolean;
   maxHours?: string;
   maxMinutes?: string;
   onFinishEditing?: Function;
@@ -27,6 +27,7 @@ export default function TimeTextField({
   placeholderColor,
   focusBorderColor,
   floatingErrorMessage,
+  isDisabled,
   maxHours,
   maxMinutes,
   onFinishEditing,
@@ -88,12 +89,18 @@ export default function TimeTextField({
         onChangeText={(text: string) => setTime(TimeInputHelper.mask(text))}
         onBlur={lostFocusHandler}
         onFocus={focusHandler}
+        editable={!isDisabled ?? true}
+        selectTextOnFocus={!isDisabled ?? true}
         placeholder={placeholderTime ?? '08:00'}
         placeholderTextColor={placeholderColor}
         value={time}
         style={[
           style,
-          { borderColor: isFocussed ? focusBorderColor : undefined },
+          {
+            borderColor: isFocussed ? focusBorderColor : undefined,
+            borderWidth: isDisabled ? 0 : undefined,
+            backgroundColor: isDisabled ? 'transparent' : undefined,
+          },
         ]}
       />
     </Tooltip>
