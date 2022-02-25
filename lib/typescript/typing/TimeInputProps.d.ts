@@ -8,6 +8,7 @@ export default interface TimeInputProps {
     onFinishEditing?: Function;
     setCurrentTime?: boolean;
     hideToggle?: boolean;
+    isDisabled?: boolean;
     maxHours?: string;
     maxMinutes?: string;
     placeholderTime?: string;
