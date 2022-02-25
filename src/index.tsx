@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { NativeBaseProvider } from 'native-base';
 import { Animated, StyleSheet, Text, View } from 'react-native';
 import TimeTextField from './components/TimeTextField';
 import _ from 'lodash';
@@ -112,123 +111,121 @@ export default function TimeInput({
   if (!componentReady || !componentStyle || !componentTheme) return null;
 
   return (
-    <NativeBaseProvider>
-      <View style={componentStyle.componentContainer}>
-        <View style={componentStyle.container}>
-          <TimeTextField
-            givenTime={getGivenTime()}
-            onFinishEditing={onFinishEditing}
-            maxHours={maxHours}
-            maxMinutes={maxMinutes}
-            isDisabled={isDisabled}
-            placeholderTime={placeholderTime}
-            placeholderColor={componentTheme.placeholderTextColor}
-            focusBorderColor={componentTheme.focusBorderColor}
-            floatingErrorMessage={floatingErrorMessage}
-            style={[
-              componentStyle.input ?? {},
+    <View style={componentStyle.componentContainer}>
+      <View style={componentStyle.container}>
+        <TimeTextField
+          givenTime={getGivenTime()}
+          onFinishEditing={onFinishEditing}
+          maxHours={maxHours}
+          maxMinutes={maxMinutes}
+          isDisabled={isDisabled}
+          placeholderTime={placeholderTime}
+          placeholderColor={componentTheme.placeholderTextColor}
+          focusBorderColor={componentTheme.focusBorderColor}
+          floatingErrorMessage={floatingErrorMessage}
+          style={[
+            componentStyle.input ?? {},
+            {
+              backgroundColor: componentTheme.inputBackgroundColor,
+              borderColor: validTime
+                ? componentTheme.inputBorderColor
+                : componentTheme.inputInvalidBorderColor,
+              borderWidth: componentTheme.inputBorderWidth,
+              color: componentTheme.inputTextColor,
+              fontFamily: componentTheme.inputFontFamily,
+              fontSize: componentTheme.inputFontSize,
+            },
+          ]}
+          onTimeValueReady={handleTimeValueReady}
+        />
+
+        {!hideToggle && (
+          <Toggle
+            toggleStyles={[
+              componentStyle.toggle ?? {},
               {
-                backgroundColor: componentTheme.inputBackgroundColor,
-                borderColor: validTime
-                  ? componentTheme.inputBorderColor
-                  : componentTheme.inputInvalidBorderColor,
-                borderWidth: componentTheme.inputBorderWidth,
-                color: componentTheme.inputTextColor,
-                fontFamily: componentTheme.inputFontFamily,
-                fontSize: componentTheme.inputFontSize,
+                backgroundColor: componentTheme.toggleBackgroundColor,
               },
             ]}
-            onTimeValueReady={handleTimeValueReady}
-          />
-
-          {!hideToggle && (
-            <Toggle
-              toggleStyles={[
-                componentStyle.toggle ?? {},
+          >
+            <ToggleButton
+              toggleButtonStyles={[
+                componentStyle.toggleButton ?? {},
                 {
-                  backgroundColor: componentTheme.toggleBackgroundColor,
+                  backgroundColor: componentTheme.toggleButtonBackground,
+                },
+              ]}
+              onPress={() => setMeridiem('AM')}
+            >
+              <Text
+                style={{
+                  color: componentTheme.toggleButtonTextColor,
+                }}
+              >
+                AM
+              </Text>
+            </ToggleButton>
+
+            <ToggleButton
+              toggleButtonStyles={[
+                componentStyle.toggleButton ?? {},
+                {
+                  backgroundColor: componentTheme.toggleButtonBackground,
+                },
+              ]}
+              onPress={() => setMeridiem('PM')}
+            >
+              <Text
+                style={{
+                  color: componentTheme.toggleButtonTextColor,
+                }}
+              >
+                PM
+              </Text>
+            </ToggleButton>
+
+            <ToggleButton
+              activeButton
+              toggleButtonStyles={[
+                componentStyle.toggleButton ?? {},
+                componentStyle.toggleButtonActive ?? {},
+                {
+                  backgroundColor:
+                    componentTheme.toggleButtonActiveBackgroundColor,
+                  transform: [{ translateX: animation }],
                 },
               ]}
             >
-              <ToggleButton
-                toggleButtonStyles={[
-                  componentStyle.toggleButton ?? {},
-                  {
-                    backgroundColor: componentTheme.toggleButtonBackground,
-                  },
-                ]}
-                onPress={() => setMeridiem('AM')}
+              <Text
+                style={{
+                  color: componentTheme.toggleButtonActiveTextColor,
+                }}
               >
-                <Text
-                  style={{
-                    color: componentTheme.toggleButtonTextColor,
-                  }}
-                >
-                  AM
-                </Text>
-              </ToggleButton>
-
-              <ToggleButton
-                toggleButtonStyles={[
-                  componentStyle.toggleButton ?? {},
-                  {
-                    backgroundColor: componentTheme.toggleButtonBackground,
-                  },
-                ]}
-                onPress={() => setMeridiem('PM')}
-              >
-                <Text
-                  style={{
-                    color: componentTheme.toggleButtonTextColor,
-                  }}
-                >
-                  PM
-                </Text>
-              </ToggleButton>
-
-              <ToggleButton
-                activeButton
-                toggleButtonStyles={[
-                  componentStyle.toggleButton ?? {},
-                  componentStyle.toggleButtonActive ?? {},
-                  {
-                    backgroundColor:
-                      componentTheme.toggleButtonActiveBackgroundColor,
-                    transform: [{ translateX: animation }],
-                  },
-                ]}
-              >
-                <Text
-                  style={{
-                    color: componentTheme.toggleButtonActiveTextColor,
-                  }}
-                >
-                  {meridiem}
-                </Text>
-              </ToggleButton>
-            </Toggle>
-          )}
-        </View>
-
-        {showErrorText && !validTime ? (
-          <View style={componentStyle.errorTextContainer}>
-            <Text
-              style={[
-                componentStyle.errorText,
-                {
-                  color: componentTheme.errorTextColor,
-                  paddingLeft: componentTheme.errorTextPaddingLeft,
-                  fontFamily: componentTheme.inputFontFamily,
-                },
-              ]}
-            >
-              {validTime ? '' : componentErrorText}
-            </Text>
-          </View>
-        ) : (
-          <></>
+                {meridiem}
+              </Text>
+            </ToggleButton>
+          </Toggle>
         )}
       </View>
-    </NativeBaseProvider>
+
+      {showErrorText && !validTime ? (
+        <View style={componentStyle.errorTextContainer}>
+          <Text
+            style={[
+              componentStyle.errorText,
+              {
+                color: componentTheme.errorTextColor,
+                paddingLeft: componentTheme.errorTextPaddingLeft,
+                fontFamily: componentTheme.inputFontFamily,
+              },
+            ]}
+          >
+            {validTime ? '' : componentErrorText}
+          </Text>
+        </View>
+      ) : (
+        <></>
+      )}
+    </View>
   );
 }
