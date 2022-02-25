@@ -3,6 +3,7 @@ export default interface TimeInputTheme {
     errorTextPaddingLeft?: number;
     inputBackgroundColor?: string;
     inputBorderColor?: string;
+    focusBorderColor?: string;
     inputInvalidBorderColor?: string;
     inputBorderWidth?: number;
     inputTextColor?: string;

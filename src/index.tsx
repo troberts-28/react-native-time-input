@@ -22,6 +22,7 @@ export default function TimeInput({
   maxHours,
   maxMinutes,
   placeholderTime,
+  floatingErrorMessage,
   styles = defaultStyles,
   theme = defaultTheme,
 }: TimeInputProps): JSX.Element | null {
@@ -115,6 +116,9 @@ export default function TimeInput({
           maxHours={maxHours}
           maxMinutes={maxMinutes}
           placeholderTime={placeholderTime}
+          placeholderColor={componentTheme.placeholderTextColor}
+          focusBorderColor={componentTheme.focusBorderColor}
+          floatingErrorMessage={floatingErrorMessage}
           style={[
             componentStyle.input ?? {},
             {
