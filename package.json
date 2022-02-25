@@ -74,7 +74,8 @@
     "date-fns": "^2.25.0",
     "native-base": "^3.3.7",
     "react": "^16.13.1 || ^17.0.1",
-    "react-native": ">=0.64.3"
+    "react-native": ">=0.64.3",
+    "react-native-safe-area-context": "^4.0.1"
   },
   "jest": {
     "preset": "react-native",
