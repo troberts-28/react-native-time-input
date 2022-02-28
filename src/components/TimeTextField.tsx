@@ -12,11 +12,14 @@ type TimeTextFieldProps = {
   placeholderTime?: string;
   placeholderColor?: string;
   focusBorderColor?: string;
+  unfocusBorderColor?: string;
+  floatingErrorOffset?: number;
   floatingErrorMessage?: string;
   isDisabled?: boolean;
   maxHours?: string;
   maxMinutes?: string;
   onFinishEditing?: Function;
+  bg?: string;
 };
 
 export default function TimeTextField({
@@ -26,11 +29,14 @@ export default function TimeTextField({
   placeholderTime,
   placeholderColor,
   focusBorderColor,
+  unfocusBorderColor,
   floatingErrorMessage,
+  floatingErrorOffset,
   isDisabled,
   maxHours,
   maxMinutes,
   onFinishEditing,
+  bg,
 }: TimeTextFieldProps): JSX.Element {
   const [time, setTime] = useState<string>('');
   const [isFocussed, setIsFocussed] = useState(false);
@@ -77,7 +83,7 @@ export default function TimeTextField({
       label={floatingErrorMessage ?? ''}
       isOpen={floatingErrorMessage ? isValid && isFocussed : false}
       placement="bottom"
-      mt="16" // * hacky value inserted to push it below - should link to size of input
+      mt={floatingErrorOffset ?? 16} // * hacky value inserted to push it below - should link to size of input
       py="0.5"
       px="1"
       bg="#BDBDBD"
@@ -97,9 +103,9 @@ export default function TimeTextField({
         style={[
           style,
           {
-            borderColor: isFocussed ? focusBorderColor : undefined,
-            borderWidth: isDisabled ? 0 : undefined,
-            backgroundColor: isDisabled ? 'transparent' : undefined,
+            borderColor: isFocussed ? focusBorderColor : unfocusBorderColor,
+            borderWidth: isDisabled ? 0 : 1,
+            backgroundColor: isDisabled ? 'transparent' : bg,
           },
         ]}
       />

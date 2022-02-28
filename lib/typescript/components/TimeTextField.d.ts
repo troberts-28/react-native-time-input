@@ -8,11 +8,14 @@ declare type TimeTextFieldProps = {
     placeholderTime?: string;
     placeholderColor?: string;
     focusBorderColor?: string;
+    unfocusBorderColor?: string;
+    floatingErrorOffset?: number;
     floatingErrorMessage?: string;
     isDisabled?: boolean;
     maxHours?: string;
     maxMinutes?: string;
     onFinishEditing?: Function;
+    bg?: string;
 };
-export default function TimeTextField({ givenTime, onTimeValueReady, style, placeholderTime, placeholderColor, focusBorderColor, floatingErrorMessage, isDisabled, maxHours, maxMinutes, onFinishEditing, }: TimeTextFieldProps): JSX.Element;
+export default function TimeTextField({ givenTime, onTimeValueReady, style, placeholderTime, placeholderColor, focusBorderColor, unfocusBorderColor, floatingErrorMessage, floatingErrorOffset, isDisabled, maxHours, maxMinutes, onFinishEditing, bg, }: TimeTextFieldProps): JSX.Element;
 export {};
