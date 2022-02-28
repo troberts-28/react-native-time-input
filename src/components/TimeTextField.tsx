@@ -6,6 +6,7 @@ import type { TimeParts } from 'src/typing/TimeParts';
 import useDebounce from '../hooks/useDebounce';
 
 type TimeTextFieldProps = {
+  id?: string;
   style: TextStyle[];
   onTimeValueReady: Function;
   givenTime: TimeParts | null;
@@ -24,6 +25,7 @@ type TimeTextFieldProps = {
 };
 
 export default function TimeTextField({
+  id,
   givenTime,
   onTimeValueReady,
   style,
@@ -76,9 +78,9 @@ export default function TimeTextField({
   const lostFocusHandler = useCallback(() => {
     setIsFocussed(false);
     if (onFinishEditing) {
-      onFinishEditing(time);
+      onFinishEditing(id ?? 'dummyId', time, isValid);
     }
-  }, [onFinishEditing, time]);
+  }, [id, isValid, onFinishEditing, time]);
 
   return (
     <Tooltip

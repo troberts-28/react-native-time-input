@@ -2,6 +2,7 @@
 import { TextStyle } from 'react-native';
 import type { TimeParts } from 'src/typing/TimeParts';
 declare type TimeTextFieldProps = {
+    id?: string;
     style: TextStyle[];
     onTimeValueReady: Function;
     givenTime: TimeParts | null;
@@ -18,5 +19,5 @@ declare type TimeTextFieldProps = {
     onFinishEditing?: Function;
     bg?: string;
 };
-export default function TimeTextField({ givenTime, onTimeValueReady, style, placeholderTime, placeholderColor, focusBorderColor, unfocusBorderColor, invalidBorderColor, floatingErrorMessage, floatingErrorOffset, isDisabled, maxHours, maxMinutes, onFinishEditing, bg, }: TimeTextFieldProps): JSX.Element;
+export default function TimeTextField({ id, givenTime, onTimeValueReady, style, placeholderTime, placeholderColor, focusBorderColor, unfocusBorderColor, invalidBorderColor, floatingErrorMessage, floatingErrorOffset, isDisabled, maxHours, maxMinutes, onFinishEditing, bg, }: TimeTextFieldProps): JSX.Element;
 export {};

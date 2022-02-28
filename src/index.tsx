@@ -13,6 +13,7 @@ import type TimeInputTheme from './typing/TimeInputTheme';
 import type { TimeParts } from './typing/TimeParts';
 
 export default function TimeInput({
+  id,
   errorText = null,
   showErrorText = true,
   initialTime = null,
@@ -115,6 +116,7 @@ export default function TimeInput({
     <View style={componentStyle.componentContainer}>
       <View style={componentStyle.container}>
         <TimeTextField
+          id={id}
           givenTime={getGivenTime()}
           onFinishEditing={onFinishEditing}
           maxHours={maxHours}
