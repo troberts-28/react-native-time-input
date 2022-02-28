@@ -127,13 +127,12 @@ export default function TimeInput({
           floatingErrorOffset={floatingErrorOffset}
           unfocusBorderColor={componentTheme.inputBorderColor}
           bg={componentTheme.inputBackgroundColor}
+          invalidBorderColor={componentTheme.inputInvalidBorderColor}
           style={[
             componentStyle.input ?? {},
             {
               backgroundColor: componentTheme.inputBackgroundColor,
-              borderColor: validTime
-                ? componentTheme.inputBorderColor
-                : componentTheme.inputInvalidBorderColor,
+              borderColor: componentTheme.inputBorderColor,
               borderWidth: componentTheme.inputBorderWidth,
               color: componentTheme.inputTextColor,
               fontFamily: componentTheme.inputFontFamily,

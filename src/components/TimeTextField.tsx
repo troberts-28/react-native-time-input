@@ -13,6 +13,7 @@ type TimeTextFieldProps = {
   placeholderColor?: string;
   focusBorderColor?: string;
   unfocusBorderColor?: string;
+  invalidBorderColor?: string;
   floatingErrorOffset?: number;
   floatingErrorMessage?: string;
   isDisabled?: boolean;
@@ -30,6 +31,7 @@ export default function TimeTextField({
   placeholderColor,
   focusBorderColor,
   unfocusBorderColor,
+  invalidBorderColor,
   floatingErrorMessage,
   floatingErrorOffset,
   isDisabled,
@@ -103,7 +105,11 @@ export default function TimeTextField({
         style={[
           style,
           {
-            borderColor: isFocussed ? focusBorderColor : unfocusBorderColor,
+            borderColor: !isValid
+              ? invalidBorderColor
+              : isFocussed
+              ? focusBorderColor
+              : unfocusBorderColor,
             borderWidth: isDisabled ? 0 : 1,
             backgroundColor: isDisabled ? 'transparent' : bg,
           },

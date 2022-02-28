@@ -9,6 +9,7 @@ declare type TimeTextFieldProps = {
     placeholderColor?: string;
     focusBorderColor?: string;
     unfocusBorderColor?: string;
+    invalidBorderColor?: string;
     floatingErrorOffset?: number;
     floatingErrorMessage?: string;
     isDisabled?: boolean;
@@ -17,5 +18,5 @@ declare type TimeTextFieldProps = {
     onFinishEditing?: Function;
     bg?: string;
 };
-export default function TimeTextField({ givenTime, onTimeValueReady, style, placeholderTime, placeholderColor, focusBorderColor, unfocusBorderColor, floatingErrorMessage, floatingErrorOffset, isDisabled, maxHours, maxMinutes, onFinishEditing, bg, }: TimeTextFieldProps): JSX.Element;
+export default function TimeTextField({ givenTime, onTimeValueReady, style, placeholderTime, placeholderColor, focusBorderColor, unfocusBorderColor, invalidBorderColor, floatingErrorMessage, floatingErrorOffset, isDisabled, maxHours, maxMinutes, onFinishEditing, bg, }: TimeTextFieldProps): JSX.Element;
 export {};
