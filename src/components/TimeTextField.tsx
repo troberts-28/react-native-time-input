@@ -83,7 +83,7 @@ export default function TimeTextField({
   return (
     <Tooltip
       label={floatingErrorMessage ?? ''}
-      isOpen={floatingErrorMessage ? isValid && isFocussed : false}
+      isOpen={floatingErrorMessage ? !isValid && isFocussed : false}
       placement="bottom"
       mt={floatingErrorOffset ?? 16} // * hacky value inserted to push it below - should link to size of input
       py="0.5"
