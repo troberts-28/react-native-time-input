@@ -7,10 +7,10 @@ export default function getLocaleTimeString(
 ): string {
   let date = dateTimeString ? new Date(dateTimeString) : new Date();
   if (!hideHours && !includeSeconds) {
-    return format(date, 'hh:mm a');
+    return format(date, 'h:mm a');
   } else if (includeSeconds && (hideHours || date.getHours() === 0)) {
-    return format(date, 'mm:ss a');
+    return format(date, 'm:ss a');
   } else {
-    return format(date, 'hh:mm:ss a');
+    return format(date, 'h:mm:ss a');
   }
 }
