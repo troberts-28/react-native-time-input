@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { TextInput, TextStyle } from 'react-native';
+import { TextInput, TextStyle, View } from 'react-native';
 import { Tooltip } from 'native-base';
 import * as TimeInputHelper from '../helpers/timeInput';
 import type { TimeParts } from 'src/typing/TimeParts';
@@ -115,32 +115,41 @@ export default function TimeTextField({
       _text={{ color: '#78716c' }}
       openDelay={1000}
     >
-      <TextInput
-        keyboardType="number-pad"
-        maxLength={includeSeconds ? (!hideHours ? 8 : 5) : 5}
-        onChangeText={(text: string) => setTime(TimeInputHelper.mask(text))}
-        onBlur={lostFocusHandler}
-        onFocus={focusHandler}
-        editable={!isDisabled ?? true}
-        selectTextOnFocus={!isDisabled ?? true}
-        placeholder={placeholderTime ?? '08:00'}
-        placeholderTextColor={placeholderColor}
-        value={time}
-        selectionColor={focusBorderColor}
-        underlineColorAndroid={focusBorderColor}
-        style={[
-          style,
-          {
-            borderColor: !isValid
-              ? invalidBorderColor
-              : isFocussed
-              ? focusBorderColor
-              : unfocusBorderColor,
-            borderWidth: isDisabled ? 0 : 1,
-            backgroundColor: isDisabled ? 'transparent' : bg,
-          },
-        ]}
-      />
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <TextInput
+          keyboardType="number-pad"
+          maxLength={includeSeconds ? (!hideHours ? 8 : 5) : 5}
+          onChangeText={(text: string) => setTime(TimeInputHelper.mask(text))}
+          onBlur={lostFocusHandler}
+          onFocus={focusHandler}
+          editable={!isDisabled ?? true}
+          selectTextOnFocus={!isDisabled ?? true}
+          placeholder={placeholderTime ?? '08:00'}
+          placeholderTextColor={placeholderColor}
+          value={time}
+          selectionColor={'black'}
+          underlineColorAndroid={'black'}
+          style={[
+            style,
+            {
+              borderColor: !isValid
+                ? invalidBorderColor
+                : isFocussed
+                ? focusBorderColor
+                : unfocusBorderColor,
+              borderWidth: isDisabled ? 0 : 1,
+              backgroundColor: isDisabled ? 'transparent' : bg,
+              width: time ? '100%' : '95%',
+            },
+          ]}
+        />
+      </View>
     </Tooltip>
   );
 }
