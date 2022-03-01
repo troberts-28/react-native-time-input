@@ -37,17 +37,17 @@ export const validate = (
 ): boolean => {
   let rule = `[0-${maxMinutes?.slice(0, -1) ?? '5'}][0-${
     maxMinutes?.slice(-1) ?? '9'
-  }]$`;
+  }]`;
 
   if (!hideHours) {
     rule =
       `^(0?[0-${maxHours?.slice(-1) ?? '9'}]|${
         '[0-' + maxHours?.slice(0, -1) + ']' ?? '1'
-      }[0-${maxHours?.slice(-1) ?? '2'}])` + rule;
+      }[0-${maxHours?.slice(-1) ?? '2'}]):` + rule;
   }
 
   if (includeSeconds) {
-    rule += `[0-${maxSeconds?.slice(0, -1) ?? '5'}][0-${
+    rule += `:[0-${maxSeconds?.slice(0, -1) ?? '5'}][0-${
       maxSeconds?.slice(-1) ?? '9'
     }]$`;
   }
