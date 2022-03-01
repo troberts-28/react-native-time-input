@@ -9,6 +9,8 @@ type TimeTextFieldProps = {
   id?: string;
   style: TextStyle[];
   onTimeValueReady: Function;
+  includeSeconds: boolean;
+  hideHours?: boolean;
   givenTime: TimeParts | null;
   placeholderTime?: string;
   placeholderColor?: string;
@@ -20,6 +22,7 @@ type TimeTextFieldProps = {
   isDisabled?: boolean;
   maxHours?: string;
   maxMinutes?: string;
+  maxSeconds?: string;
   onFinishEditing?: Function;
   bg?: string;
 };
@@ -28,6 +31,8 @@ export default function TimeTextField({
   id,
   givenTime,
   onTimeValueReady,
+  includeSeconds,
+  hideHours,
   style,
   placeholderTime,
   placeholderColor,
@@ -39,6 +44,7 @@ export default function TimeTextField({
   isDisabled,
   maxHours,
   maxMinutes,
+  maxSeconds,
   onFinishEditing,
   bg,
 }: TimeTextFieldProps): JSX.Element {
@@ -58,10 +64,25 @@ export default function TimeTextField({
   }, [givenTime, setTime]);
 
   useEffect((): void => {
-    const valid = TimeInputHelper.validate(debouncedTime, maxHours, maxMinutes);
+    const valid = TimeInputHelper.validate(
+      debouncedTime,
+      maxHours,
+      maxMinutes,
+      maxSeconds,
+      includeSeconds,
+      hideHours
+    );
     setIsValid(valid);
     onTimeValueReady(valid, debouncedTime);
-  }, [debouncedTime, maxHours, maxMinutes, onTimeValueReady]);
+  }, [
+    debouncedTime,
+    hideHours,
+    includeSeconds,
+    maxHours,
+    maxMinutes,
+    maxSeconds,
+    onTimeValueReady,
+  ]);
 
   useEffect((): (() => void) => {
     setDebouncedTime(time);
@@ -95,7 +116,7 @@ export default function TimeTextField({
     >
       <TextInput
         keyboardType="number-pad"
-        maxLength={5}
+        maxLength={includeSeconds ? (!hideHours ? 8 : 5) : 5}
         onChangeText={(text: string) => setTime(TimeInputHelper.mask(text))}
         onBlur={lostFocusHandler}
         onFocus={focusHandler}

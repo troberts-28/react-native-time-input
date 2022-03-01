@@ -21,9 +21,12 @@ export default function TimeInput({
   onFinishEditing,
   setCurrentTime = false,
   hideToggle = false,
+  includeSeconds = false,
+  hideHours = false,
   isDisabled = false,
   maxHours,
   maxMinutes,
+  maxSeconds,
   placeholderTime,
   floatingErrorMessage,
   floatingErrorOffset,
@@ -121,7 +124,10 @@ export default function TimeInput({
           onFinishEditing={onFinishEditing}
           maxHours={maxHours}
           maxMinutes={maxMinutes}
+          maxSeconds={maxSeconds}
           isDisabled={isDisabled}
+          includeSeconds={includeSeconds}
+          hideHours={hideHours}
           placeholderTime={placeholderTime}
           placeholderColor={componentTheme.placeholderTextColor}
           focusBorderColor={componentTheme.focusBorderColor}

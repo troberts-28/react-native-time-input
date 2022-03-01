@@ -9,9 +9,12 @@ export default interface TimeInputProps {
     onFinishEditing?: Function;
     setCurrentTime?: boolean;
     hideToggle?: boolean;
+    includeSeconds?: boolean;
+    hideHours?: boolean;
     isDisabled?: boolean;
     maxHours?: string;
     maxMinutes?: string;
+    maxSeconds?: string;
     placeholderTime?: string;
     floatingErrorMessage?: string;
     floatingErrorOffset?: number;
