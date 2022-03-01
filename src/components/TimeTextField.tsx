@@ -113,6 +113,9 @@ export default function TimeTextField({
       px="1"
       bg="#BDBDBD"
       _text={{ color: '#78716c' }}
+      openDelay={400}
+      justifyContent="center"
+      alignItems="center"
     >
       <TextInput
         keyboardType="number-pad"
@@ -125,6 +128,7 @@ export default function TimeTextField({
         placeholder={placeholderTime ?? '08:00'}
         placeholderTextColor={placeholderColor}
         value={time}
+        selectionColor={focusBorderColor}
         style={[
           style,
           {
