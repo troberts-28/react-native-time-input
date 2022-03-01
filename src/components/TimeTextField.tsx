@@ -113,9 +113,7 @@ export default function TimeTextField({
       px="1"
       bg="#BDBDBD"
       _text={{ color: '#78716c' }}
-      openDelay={400}
-      justifyContent="center"
-      alignItems="center"
+      openDelay={1000}
     >
       <TextInput
         keyboardType="number-pad"
@@ -129,6 +127,7 @@ export default function TimeTextField({
         placeholderTextColor={placeholderColor}
         value={time}
         selectionColor={focusBorderColor}
+        underlineColorAndroid={focusBorderColor}
         style={[
           style,
           {
