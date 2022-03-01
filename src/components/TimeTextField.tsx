@@ -104,23 +104,23 @@ export default function TimeTextField({
   }, [id, isValid, onFinishEditing, time]);
 
   return (
-    <Tooltip
-      label={floatingErrorMessage ?? ''}
-      isOpen={floatingErrorMessage ? !isValid && isFocussed : false}
-      placement="bottom"
-      mt={floatingErrorOffset ?? 16} // * hacky value inserted to push it below - should link to size of input
-      py="0.5"
-      px="1"
-      bg="#BDBDBD"
-      _text={{ color: '#78716c' }}
-      openDelay={1000}
+    <View
+      style={{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
     >
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
+      <Tooltip
+        label={floatingErrorMessage ?? ''}
+        isOpen={floatingErrorMessage ? !isValid && isFocussed : false}
+        placement="bottom"
+        mt={floatingErrorOffset ?? 16} // * hacky value inserted to push it below - should link to size of input
+        py="0.5"
+        px="1"
+        bg="#BDBDBD"
+        _text={{ color: '#78716c' }}
+        openDelay={1000}
       >
         <TextInput
           keyboardType="number-pad"
@@ -133,8 +133,7 @@ export default function TimeTextField({
           placeholder={placeholderTime ?? '08:00'}
           placeholderTextColor={placeholderColor}
           value={time}
-          selectionColor={'black'}
-          underlineColorAndroid={'black'}
+          selectionColor="#5B0854"
           style={[
             style,
             {
@@ -149,7 +148,7 @@ export default function TimeTextField({
             },
           ]}
         />
-      </View>
-    </Tooltip>
+      </Tooltip>
+    </View>
   );
 }
