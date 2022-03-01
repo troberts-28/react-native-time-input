@@ -45,14 +45,18 @@ export default function TimeInput({
   const [componentErrorText, setComponentErrorText] = useState<string>(
     'Please enter a valid time.'
   );
-  const [currentLocaleTime] = useState<string>(getLocaleTimeString());
+  const [currentLocaleTime] = useState<string>(
+    getLocaleTimeString(null, hideHours, includeSeconds)
+  );
   const [currentLocaleTimeParsed] = useState<TimeParts>(
     parseLocaleTimeString(currentLocaleTime)
   );
   const [initialTimeParsed] = useState<TimeParts | null>((): TimeParts | null =>
     !initialTime
       ? null
-      : parseLocaleTimeString(getLocaleTimeString(initialTime))
+      : parseLocaleTimeString(
+          getLocaleTimeString(initialTime, hideHours, includeSeconds)
+        )
   );
 
   const getGivenTime = (): TimeParts | null => {
