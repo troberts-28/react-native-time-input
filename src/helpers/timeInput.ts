@@ -14,7 +14,7 @@ export const mask = (value: string): string => {
 
   if (totalCharactersInValue === 5) {
     return (
-      value.substr(0, 1) + ':' + value.substr(2, 2) + ':' + value.substr(3)
+      value.substr(0, 1) + ':' + value.substr(1, 2) + ':' + value.substr(3)
     );
   }
 
