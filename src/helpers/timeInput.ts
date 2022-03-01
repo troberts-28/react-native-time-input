@@ -47,9 +47,9 @@ export const validate = (
   }
 
   if (includeSeconds) {
-    rule += `:[0-${maxSeconds?.slice(0, -1) ?? '5'}][0-${
+    rule += `(:[0-${maxSeconds?.slice(0, -1) ?? '5'}][0-${
       maxSeconds?.slice(-1) ?? '9'
-    }]$`;
+    }])?$`;
   }
 
   const regex = new RegExp(rule);
