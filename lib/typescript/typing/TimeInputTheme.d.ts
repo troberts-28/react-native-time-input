@@ -15,4 +15,5 @@ export default interface TimeInputTheme {
     toggleButtonActiveTextColor?: string;
     toggleButtonBackground?: string;
     toggleButtonTextColor?: string;
+    selectionColor?: string;
 }

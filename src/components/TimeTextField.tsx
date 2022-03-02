@@ -25,6 +25,7 @@ type TimeTextFieldProps = {
   maxSeconds?: string;
   onFinishEditing?: Function;
   bg?: string;
+  selectionColor?: string;
 };
 
 export default function TimeTextField({
@@ -47,6 +48,7 @@ export default function TimeTextField({
   maxSeconds,
   onFinishEditing,
   bg,
+  selectionColor,
 }: TimeTextFieldProps): JSX.Element {
   const [time, setTime] = useState<string>('');
   const [isFocussed, setIsFocussed] = useState(false);
@@ -127,11 +129,13 @@ export default function TimeTextField({
           placeholder={placeholderTime ?? '08:00'}
           placeholderTextColor={placeholderColor}
           value={time}
-          selectionColor="#5B0854"
+          selectionColor={selectionColor}
           style={[
             style,
             {
-              borderColor: !isValid
+              borderColor: isDisabled
+                ? 'transparent'
+                : !isValid
                 ? invalidBorderColor
                 : isFocussed
                 ? focusBorderColor

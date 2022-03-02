@@ -133,20 +133,25 @@ export default function TimeInput({
           includeSeconds={includeSeconds}
           hideHours={hideHours}
           placeholderTime={placeholderTime}
-          placeholderColor={componentTheme.placeholderTextColor}
+          placeholderColor={
+            !isDisabled ? componentTheme.placeholderTextColor : 'transparent'
+          }
           focusBorderColor={componentTheme.focusBorderColor}
           floatingErrorMessage={floatingErrorMessage}
           floatingErrorOffset={floatingErrorOffset}
           unfocusBorderColor={componentTheme.inputBorderColor}
           bg={componentTheme.inputBackgroundColor}
           invalidBorderColor={componentTheme.inputInvalidBorderColor}
+          selectionColor={componentTheme.selectionColor}
           style={[
             componentStyle.input ?? {},
             {
               backgroundColor: componentTheme.inputBackgroundColor,
               borderColor: componentTheme.inputBorderColor,
               borderWidth: componentTheme.inputBorderWidth,
-              color: componentTheme.inputTextColor,
+              color: !isDisabled
+                ? componentTheme.inputTextColor
+                : 'transparent',
               fontFamily: componentTheme.inputFontFamily,
               fontSize: componentTheme.inputFontSize,
             },
