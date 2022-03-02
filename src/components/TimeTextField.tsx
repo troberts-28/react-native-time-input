@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { TextInput, TextStyle, View } from 'react-native';
-import { Tooltip } from 'native-base';
+import { TextInput, TextStyle } from 'react-native';
+import { Tooltip, Box } from 'native-base';
 import * as TimeInputHelper from '../helpers/timeInput';
 import type { TimeParts } from 'src/typing/TimeParts';
 import useDebounce from '../hooks/useDebounce';
@@ -104,24 +104,18 @@ export default function TimeTextField({
   }, [id, isValid, onFinishEditing, time]);
 
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
+    <Tooltip
+      label={floatingErrorMessage ?? ''}
+      isOpen={floatingErrorMessage ? !isValid && isFocussed : false}
+      placement="bottom"
+      mt={floatingErrorOffset ?? 16} // * hacky value inserted to push it below - should link to size of input
+      py="0.5"
+      px="1"
+      bg="#BDBDBD"
+      _text={{ color: '#78716c' }}
+      openDelay={1000}
     >
-      <Tooltip
-        label={floatingErrorMessage ?? ''}
-        isOpen={floatingErrorMessage ? !isValid && isFocussed : false}
-        placement="bottom"
-        mt={floatingErrorOffset ?? 16} // * hacky value inserted to push it below - should link to size of input
-        py="0.5"
-        px="1"
-        bg="#BDBDBD"
-        _text={{ color: '#78716c' }}
-        openDelay={1000}
-      >
+      <Box flex={1} alignItems="center" justifyContent="center">
         <TextInput
           keyboardType="number-pad"
           maxLength={includeSeconds ? (!hideHours ? 8 : 5) : 5}
@@ -148,7 +142,7 @@ export default function TimeTextField({
             },
           ]}
         />
-      </Tooltip>
-    </View>
+      </Box>
+    </Tooltip>
   );
 }
