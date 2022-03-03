@@ -106,7 +106,7 @@ export default function TimeTextField({
   }, [id, isValid, onFinishEditing, time]);
 
   return (
-    <Box>
+    <Box flex={1} alignItems="center" justifyContent="center">
       <Tooltip
         label={floatingErrorMessage ?? ''}
         isOpen={floatingErrorMessage && !isValid && isFocussed ? true : false}
@@ -118,36 +118,34 @@ export default function TimeTextField({
         _text={{ color: '#78716c' }}
         openDelay={1000}
       >
-        <Box alignItems="center" justifyContent="center">
-          <TextInput
-            keyboardType="number-pad"
-            maxLength={includeSeconds ? (!hideHours ? 8 : 5) : 5}
-            onChangeText={(text: string) => setTime(TimeInputHelper.mask(text))}
-            onBlur={lostFocusHandler}
-            onFocus={focusHandler}
-            editable={!isDisabled ?? true}
-            selectTextOnFocus={!isDisabled ?? true}
-            placeholder={placeholderTime ?? '08:00'}
-            placeholderTextColor={placeholderColor}
-            value={time}
-            selectionColor={selectionColor}
-            style={[
-              style,
-              {
-                borderColor: isDisabled
-                  ? 'transparent'
-                  : !isValid
-                  ? invalidBorderColor
-                  : isFocussed
-                  ? focusBorderColor
-                  : unfocusBorderColor,
-                borderWidth: isDisabled ? 0 : 1,
-                backgroundColor: isDisabled ? 'transparent' : bg,
-                width: time ? '100%' : '95%',
-              },
-            ]}
-          />
-        </Box>
+        <TextInput
+          keyboardType="number-pad"
+          maxLength={includeSeconds ? (!hideHours ? 8 : 5) : 5}
+          onChangeText={(text: string) => setTime(TimeInputHelper.mask(text))}
+          onBlur={lostFocusHandler}
+          onFocus={focusHandler}
+          editable={!isDisabled ?? true}
+          selectTextOnFocus={!isDisabled ?? true}
+          placeholder={placeholderTime ?? '08:00'}
+          placeholderTextColor={placeholderColor}
+          value={time}
+          selectionColor={selectionColor}
+          style={[
+            style,
+            {
+              borderColor: isDisabled
+                ? 'transparent'
+                : !isValid
+                ? invalidBorderColor
+                : isFocussed
+                ? focusBorderColor
+                : unfocusBorderColor,
+              borderWidth: isDisabled ? 0 : 1,
+              backgroundColor: isDisabled ? 'transparent' : bg,
+              width: time ? '100%' : '95%',
+            },
+          ]}
+        />
       </Tooltip>
     </Box>
   );
