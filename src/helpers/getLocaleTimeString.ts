@@ -9,16 +9,14 @@ export default function getLocaleTimeString(
   let date = dateTimeString ? new Date(dateTimeString) : new Date();
   let formatString: string;
   if (!hideHours && !includeSeconds) {
-    formatString = 'h:mm';
+    formatString = 'h:mm a';
   } else if (includeSeconds && (hideHours || date.getHours() === 0)) {
-    formatString = 'm:ss';
+    formatString = 'm:ss a';
   } else {
-    formatString = 'h:mm:ss';
+    formatString = 'h:mm:ss a';
   }
   if (hideToggle && formatString.startsWith('h')) {
-    formatString = 'h' + formatString;
-  } else if (!hideToggle) {
-    formatString += ' a';
+    formatString = formatString.charAt(0).toUpperCase() + formatString.slice(1);
   }
   return format(date, formatString);
 }
