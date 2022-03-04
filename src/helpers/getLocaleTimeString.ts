@@ -3,14 +3,21 @@ import { format } from 'date-fns';
 export default function getLocaleTimeString(
   dateTimeString: Date | null = null,
   hideHours?: boolean,
-  includeSeconds?: boolean
+  includeSeconds?: boolean,
+  hideToggle?: boolean
 ): string {
   let date = dateTimeString ? new Date(dateTimeString) : new Date();
+  let formatString: string;
   if (!hideHours && !includeSeconds) {
-    return format(date, 'h:mm a');
+    formatString = 'h:mm';
   } else if (includeSeconds && (hideHours || date.getHours() === 0)) {
-    return format(date, 'm:ss a');
+    formatString = 'm:ss';
   } else {
-    return format(date, 'h:mm:ss a');
+    formatString = 'h:mm:ss';
+  }
+  if (hideToggle) {
+    return format(date, formatString) + ' AM';
+  } else {
+    return format(date, formatString + ' a');
   }
 }
