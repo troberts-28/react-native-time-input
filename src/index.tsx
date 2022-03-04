@@ -55,7 +55,9 @@ export default function TimeInput({
   );
   const [initialTimeParsed] = useState<TimeParts | null>((): TimeParts | null =>
     isDuration && typeof initialValue === 'number'
-      ? parseLocaleTimeString(durationInputConverter(initialValue))
+      ? parseLocaleTimeString(
+          durationInputConverter(initialValue, hideHours, includeSeconds)
+        )
       : initialValue instanceof Date
       ? parseLocaleTimeString(
           getLocaleTimeString(
