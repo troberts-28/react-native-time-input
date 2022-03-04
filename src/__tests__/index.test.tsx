@@ -30,7 +30,7 @@ describe('<TimeInput />', () => {
 
   it('renders with an initial time set', () => {
     const { getAllByText, getByPlaceholderText } = render(
-      <TimeInput initialTime={new Date('04/16/2021 12:15 PM')} />
+      <TimeInput initialValue={new Date('04/16/2021 12:15 PM')} />
     );
 
     expect(getAllByText('AM')).toHaveLength(1);
@@ -51,7 +51,7 @@ describe('<TimeInput />', () => {
 
   it('updates the time meridiem when AM is clicked', () => {
     const { getByText, queryAllByText } = render(
-      <TimeInput initialTime={new Date('04/16/2021 12:15 PM')} />
+      <TimeInput initialValue={new Date('04/16/2021 12:15 PM')} />
     );
     const button = getByText('AM');
     const toggle = queryAllByText('PM')[1];
@@ -63,7 +63,7 @@ describe('<TimeInput />', () => {
 
   it('updates the time meridiem when PM is clicked', () => {
     const { getByText, queryAllByText } = render(
-      <TimeInput initialTime={new Date('04/16/2021 12:15 AM')} />
+      <TimeInput initialValue={new Date('04/16/2021 12:15 AM')} />
     );
     const button = getByText('PM');
     const toggle = queryAllByText('AM')[1];
@@ -75,7 +75,7 @@ describe('<TimeInput />', () => {
 
   it('renders an error message when the given time is invalid', () => {
     const { getByDisplayValue, getByText } = render(
-      <TimeInput initialTime={new Date('04/16/2021 12:15 PM')} />
+      <TimeInput initialValue={new Date('04/16/2021 12:15 PM')} />
     );
     const input = getByDisplayValue('12:15');
 
@@ -91,7 +91,7 @@ describe('<TimeInput />', () => {
   it('renders a custom error message when the given time is invalid', () => {
     const { getByDisplayValue, getByText } = render(
       <TimeInput
-        initialTime={new Date('04/16/2021 12:15 PM')}
+        initialValue={new Date('04/16/2021 12:15 PM')}
         errorText="Sorry, your input is invalid."
       />
     );

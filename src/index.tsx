@@ -7,6 +7,7 @@ import defaultStyles from './utils/style';
 import defaultTheme from './utils/theme';
 import getLocaleTimeString from './helpers/getLocaleTimeString';
 import parseLocaleTimeString from './helpers/parseLocaleTimeString';
+import durationInputConverter from './helpers/durationInputConverter';
 import type TimeInputProps from './typing/TimeInputProps';
 import type TimeInputStyle from './typing/TimeInputStyle';
 import type TimeInputTheme from './typing/TimeInputTheme';
@@ -16,7 +17,8 @@ export default function TimeInput({
   id,
   errorText = null,
   showErrorText = true,
-  initialTime = null,
+  isDuration = true,
+  initialValue = null,
   onTimeChange = () => {},
   onFinishEditing,
   setCurrentTime = false,
@@ -52,20 +54,22 @@ export default function TimeInput({
     parseLocaleTimeString(currentLocaleTime)
   );
   const [initialTimeParsed] = useState<TimeParts | null>((): TimeParts | null =>
-    !initialTime
-      ? null
-      : parseLocaleTimeString(
+    isDuration && typeof initialValue === 'number'
+      ? parseLocaleTimeString(durationInputConverter(initialValue))
+      : initialValue instanceof Date
+      ? parseLocaleTimeString(
           getLocaleTimeString(
-            initialTime,
+            initialValue,
             hideHours,
             includeSeconds,
             hideToggle
           )
         )
+      : null
   );
 
   const getGivenTime = (): TimeParts | null => {
-    if (initialTime && initialTimeParsed) return initialTimeParsed;
+    if (initialValue && initialTimeParsed) return initialTimeParsed;
     return setCurrentTime ? currentLocaleTimeParsed : null;
   };
 
@@ -162,7 +166,7 @@ export default function TimeInput({
           onTimeValueReady={handleTimeValueReady}
         />
 
-        {!hideToggle && (
+        {!hideToggle && !isDuration && (
           <Toggle
             toggleStyles={[
               componentStyle.toggle ?? {},

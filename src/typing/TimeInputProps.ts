@@ -5,7 +5,8 @@ export default interface TimeInputProps {
   id?: string;
   errorText?: string | null;
   showErrorText?: boolean;
-  initialTime?: Date | null; // TODO: add stronger typing here for a date string?
+  isDuration?: boolean;
+  initialValue?: Date | number | null;
   onTimeChange?: Function;
   onFinishEditing?: Function;
   setCurrentTime?: boolean;
