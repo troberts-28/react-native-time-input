@@ -16,7 +16,7 @@ export default function getLocaleTimeString(
     formatString = 'h:mm:ss';
   }
   if (hideToggle) {
-    return format(date, formatString) + ' AM';
+    return format(date, formatString);
   } else {
     return format(date, formatString + ' a');
   }
