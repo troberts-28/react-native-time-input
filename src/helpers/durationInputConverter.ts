@@ -1,5 +1,5 @@
 const padWithZero = (value: string): string => {
-  if (value.length === 1) {
+  if (value.length <= 1) {
     value.padStart(2, '0');
   }
   return value;

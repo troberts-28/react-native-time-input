@@ -17,7 +17,7 @@ export default function TimeInput({
   id,
   errorText = null,
   showErrorText = true,
-  isDuration = true,
+  isDuration = false,
   initialValue = null,
   onTimeChange = () => {},
   onFinishEditing,
