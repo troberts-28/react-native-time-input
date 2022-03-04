@@ -1,8 +1,9 @@
-const padWithZero = (value: string): string => {
-  if (value.length <= 1) {
-    value.padStart(2, '00');
+const padWithZero = (value: number): string => {
+  if (value < 10) {
+    return '0' + value;
+  } else {
+    return String(value);
   }
-  return value;
 };
 
 const durationInputConverter = (
@@ -16,8 +17,8 @@ const durationInputConverter = (
   seconds %= 3600;
   const minutes = Math.floor(seconds / 60);
   seconds %= 60;
-  const paddedMinutes = padWithZero(String(minutes));
-  const paddedSeconds = padWithZero(String(seconds));
+  const paddedMinutes = padWithZero(minutes);
+  const paddedSeconds = padWithZero(seconds);
   if (!hideHours && !includeSeconds) {
     return `${hours}:${paddedMinutes} AM`;
   } else if (includeSeconds && (hideHours || hours === 0)) {
