@@ -71,6 +71,8 @@ export default function TimeInput({
       : null
   );
 
+  console.log(initialTimeParsed);
+
   const getGivenTime = (): TimeParts | null => {
     if (initialValue && initialTimeParsed) return initialTimeParsed;
     return setCurrentTime ? currentLocaleTimeParsed : null;
@@ -125,9 +127,9 @@ export default function TimeInput({
     }
 
     time.length
-      ? onTimeChange(`${time} ${meridiem}`, validTime)
-      : onTimeChange('', validTime);
-  }, [time, meridiem, validTime, onTimeChange]);
+      ? onTimeChange(id, `${time} ${meridiem}`, validTime)
+      : onTimeChange(id, '', validTime);
+  }, [time, meridiem, validTime, onTimeChange, id]);
 
   if (!componentReady || !componentStyle || !componentTheme) return null;
 
