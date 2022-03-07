@@ -71,7 +71,7 @@ export default function TimeInput({
       : null
   );
 
-  console.log(initialTimeParsed, initialValue);
+  console.log(initialTimeParsed, typeof initialValue);
 
   const getGivenTime = (): TimeParts | null => {
     if (initialValue && initialTimeParsed) return initialTimeParsed;
