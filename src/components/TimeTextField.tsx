@@ -19,6 +19,7 @@ type TimeTextFieldProps = {
   invalidBorderColor?: string;
   floatingErrorOffset?: number;
   floatingErrorMessage?: string;
+  alwaysShowFloatingMessageOnFocus?: boolean;
   isDisabled?: boolean;
   maxHours?: string;
   maxMinutes?: string;
@@ -42,6 +43,7 @@ export default function TimeTextField({
   invalidBorderColor,
   floatingErrorMessage,
   floatingErrorOffset,
+  alwaysShowFloatingMessageOnFocus,
   isDisabled,
   maxHours,
   maxMinutes,
@@ -109,7 +111,13 @@ export default function TimeTextField({
     <Box flex={1} alignItems="center" justifyContent="center">
       <Tooltip
         label={floatingErrorMessage ?? ''}
-        isOpen={floatingErrorMessage && !isValid && isFocussed ? true : false}
+        isOpen={
+          floatingErrorMessage &&
+          (alwaysShowFloatingMessageOnFocus || !isValid) &&
+          isFocussed
+            ? true
+            : false
+        }
         placement="bottom"
         mt={floatingErrorOffset ?? 16}
         py="0.5"

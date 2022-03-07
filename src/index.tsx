@@ -30,6 +30,7 @@ export default function TimeInput({
   maxMinutes,
   maxSeconds,
   placeholderTime,
+  alwaysShowFloatingMessageOnFocus,
   floatingErrorMessage,
   floatingErrorOffset,
   styles = defaultStyles,
@@ -148,6 +149,7 @@ export default function TimeInput({
             !isDisabled ? componentTheme.placeholderTextColor : 'transparent'
           }
           focusBorderColor={componentTheme.focusBorderColor}
+          alwaysShowFloatingMessageOnFocus={alwaysShowFloatingMessageOnFocus}
           floatingErrorMessage={floatingErrorMessage}
           floatingErrorOffset={floatingErrorOffset}
           unfocusBorderColor={componentTheme.inputBorderColor}

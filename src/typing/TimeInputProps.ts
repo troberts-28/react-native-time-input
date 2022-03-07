@@ -19,6 +19,7 @@ export default interface TimeInputProps {
   maxSeconds?: string;
   placeholderTime?: string;
   floatingErrorMessage?: string;
+  alwaysShowFloatingMessageOnFocus?: boolean;
   floatingErrorOffset?: number;
   styles?: TimeInputStyle;
   theme?: TimeInputTheme;
