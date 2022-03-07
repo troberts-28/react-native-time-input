@@ -150,7 +150,7 @@ export default function TimeTextField({
                 : unfocusBorderColor,
               borderWidth: isDisabled ? 0 : 1,
               backgroundColor: isDisabled ? 'transparent' : bg,
-              width: time ? '100%' : '95%',
+              width: '100%',
             },
           ]}
         />

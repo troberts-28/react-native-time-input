@@ -19,6 +19,7 @@ export default function TimeInput({
   showErrorText = true,
   isDuration = false,
   initialValue = null,
+  initiallyValid = true,
   onTimeChange = () => {},
   onFinishEditing,
   setCurrentTime = false,
@@ -71,8 +72,6 @@ export default function TimeInput({
       : null
   );
 
-  console.log(initialTimeParsed, typeof initialValue);
-
   const getGivenTime = (): TimeParts | null => {
     if (initialValue && initialTimeParsed) return initialTimeParsed;
     return setCurrentTime ? currentLocaleTimeParsed : null;
@@ -83,7 +82,7 @@ export default function TimeInput({
     return !gt ? currentLocaleTimeParsed.meridiem : gt.meridiem;
   });
   const [time, setTime] = useState<string>('');
-  const [validTime, setValidTime] = useState<boolean>(true);
+  const [validTime, setValidTime] = useState<boolean>(initiallyValid);
 
   const handleTimeValueReady = (isValid: boolean, updated: string): void => {
     setTime(updated);
