@@ -6,6 +6,7 @@ export default interface TimeInputProps {
     showErrorText?: boolean;
     isDuration?: boolean;
     initialValue?: Date | number | null;
+    initiallyValid?: boolean;
     onTimeChange?: Function;
     onFinishEditing?: Function;
     setCurrentTime?: boolean;
